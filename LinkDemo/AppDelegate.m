@@ -16,7 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"%@",[LinkToMyApp linker]);
-    NSLog(@"%@",[LinkToMyApp startLinkerOnEndpoint:[NSURL URLWithString:@"http://linktomyapp.herokuapp.com/"]]);
+    NSLog(@"%@",[LinkToMyApp startLinkerOnEndpoint:[NSURL URLWithString:@"http://linktomyapp.herokuapp.com/"] andAppID:@"1234"]);
     NSLog(@"%@",[LinkToMyApp linker]);
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

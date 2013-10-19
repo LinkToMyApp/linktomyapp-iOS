@@ -11,12 +11,14 @@
 @interface LinkToMyApp : NSObject
 
 @property (strong, nonatomic) NSURL *baseURL;
+@property (strong, nonatomic) NSString *appID;
 
--(id)initWithBaseURL:(NSURL *)url;
-
-+(LinkToMyApp *)startLinkerOnEndpoint:(NSURL *)baseURL;
++(LinkToMyApp *)startLinkerOnEndpoint:(NSURL *)baseURL andAppID:(NSString *)appID;
 +(LinkToMyApp *)linker;
 
--(void)notifyServer;
+-(void)notifyInstall;
+-(BOOL)shouldNotifyInstall;
+
+-(NSString *)installServerID;
 
 @end
