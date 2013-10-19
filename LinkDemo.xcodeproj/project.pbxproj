@@ -14,6 +14,8 @@
 		115C73331812B3F4003DC846 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 115C73321812B3F4003DC846 /* main.m */; };
 		115C73371812B3F4003DC846 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 115C73361812B3F4003DC846 /* AppDelegate.m */; };
 		115C73391812B3F4003DC846 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 115C73381812B3F4003DC846 /* Images.xcassets */; };
+		115C73581812B4F0003DC846 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 115C73561812B4F0003DC846 /* MyViewController.m */; };
+		115C73591812B4F0003DC846 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115C73571812B4F0003DC846 /* MyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,9 @@
 		115C73361812B3F4003DC846 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		115C73381812B3F4003DC846 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		115C733F1812B3F4003DC846 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		115C73551812B4F0003DC846 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		115C73561812B4F0003DC846 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		115C73571812B4F0003DC846 /* MyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +81,9 @@
 		115C732C1812B3F4003DC846 /* LinkDemo */ = {
 			isa = PBXGroup;
 			children = (
+				115C73551812B4F0003DC846 /* MyViewController.h */,
+				115C73561812B4F0003DC846 /* MyViewController.m */,
+				115C73571812B4F0003DC846 /* MyViewController.xib */,
 				115C73351812B3F4003DC846 /* AppDelegate.h */,
 				115C73361812B3F4003DC846 /* AppDelegate.m */,
 				115C73381812B3F4003DC846 /* Images.xcassets */,
@@ -148,6 +156,7 @@
 			files = (
 				115C73311812B3F4003DC846 /* InfoPlist.strings in Resources */,
 				115C73391812B3F4003DC846 /* Images.xcassets in Resources */,
+				115C73591812B4F0003DC846 /* MyViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				115C73581812B4F0003DC846 /* MyViewController.m in Sources */,
 				115C73371812B3F4003DC846 /* AppDelegate.m in Sources */,
 				115C73331812B3F4003DC846 /* main.m in Sources */,
 			);
