@@ -18,6 +18,7 @@
 		115C73591812B4F0003DC846 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115C73571812B4F0003DC846 /* MyViewController.xib */; };
 		115C735D1812B50E003DC846 /* LinkToMyApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 115C735C1812B50E003DC846 /* LinkToMyApp.m */; };
 		115C735F1812B8A6003DC846 /* LinkToMyApp.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 115C735E1812B8A6003DC846 /* LinkToMyApp.podspec */; };
+		11C7E73018132A8D0046DCB9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C7E72F18132A8D0046DCB9 /* AdSupport.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,13 +33,13 @@
 		115C73351812B3F4003DC846 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		115C73361812B3F4003DC846 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		115C73381812B3F4003DC846 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		115C733F1812B3F4003DC846 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		115C73551812B4F0003DC846 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		115C73561812B4F0003DC846 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		115C73571812B4F0003DC846 /* MyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
 		115C735B1812B50E003DC846 /* LinkToMyApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkToMyApp.h; sourceTree = "<group>"; };
 		115C735C1812B50E003DC846 /* LinkToMyApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkToMyApp.m; sourceTree = "<group>"; };
 		115C735E1812B8A6003DC846 /* LinkToMyApp.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LinkToMyApp.podspec; sourceTree = "<group>"; };
+		11C7E72F18132A8D0046DCB9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11C7E73018132A8D0046DCB9 /* AdSupport.framework in Frameworks */,
 				115C73291812B3F4003DC846 /* CoreGraphics.framework in Frameworks */,
 				115C732B1812B3F4003DC846 /* UIKit.framework in Frameworks */,
 				115C73271812B3F4003DC846 /* Foundation.framework in Frameworks */,
@@ -77,10 +79,10 @@
 		115C73251812B3F4003DC846 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11C7E72F18132A8D0046DCB9 /* AdSupport.framework */,
 				115C73261812B3F4003DC846 /* Foundation.framework */,
 				115C73281812B3F4003DC846 /* CoreGraphics.framework */,
 				115C732A1812B3F4003DC846 /* UIKit.framework */,
-				115C733F1812B3F4003DC846 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -8,6 +8,8 @@
 
 #import "LinkToMyApp.h"
 
+#import <AdSupport/AdSupport.h>
+
 #define INSTAL_SERVER_ID @"install_server_id"
 
 @implementation LinkToMyApp
@@ -67,7 +69,9 @@ static LinkToMyApp *_linker;
     
     [request setHTTPMethod:@"POST"];
     
-    [request setHTTPBody:[LinkToMyApp encodeDictionary:@{@"app_id": self.appID}]];
+    NSDictionary *dataDictionary = @{@"app_id": self.appID, @"udid": [[ASIdentifierManager sharedManager] advertisingIdentifier]};
+    
+    [request setHTTPBody:[LinkToMyApp encodeDictionary:dataDictionary]];
     
     
     [NSURLConnection sendAsynchronousRequest:request
@@ -113,6 +117,7 @@ static LinkToMyApp *_linker;
     
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:metaInfos];
     [dictionary setValue:self.appID forKey:@"app_id"];
+    [dictionary setValue:[[ASIdentifierManager sharedManager] advertisingIdentifier] forKey:@"udid"];
     
     [request setHTTPBody:[LinkToMyApp encodeDictionary:dictionary]];
     

@@ -8,5 +8,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/LinkToMyApp/linktomyapp-iOS.git", :branch => "master" }
   s.platform     = :ios, '5.0'
   s.source_files = 'LinkToMyApp/*.{h,m}'
+  s.framework    = 'AdSupport'
   s.requires_arc = true
 end
