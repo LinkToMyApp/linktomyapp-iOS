@@ -93,4 +93,29 @@ static LinkToMyApp *_linker;
     return [[NSUserDefaults standardUserDefaults] stringForKey:INSTAL_SERVER_ID];
 }
 
+-(void)notifyServerForEvent:(NSString *)event withInfos:(NSDictionary *)metaInfos
+{
+    NSLog(@"_notify event: %@ with infos: %@", event, metaInfos);
+    
+    NSURL *installURL = [self.baseURL URLByAppendingPathComponent:@"/"];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:installURL];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    //    [request setHTTPBody:<#(NSData *)#>]
+    
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:installURL]
+                                       queue:[[NSOperationQueue alloc] init]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               
+                               if (!connectionError)
+                               {
+                                   // success
+                               }
+                               
+                               
+                           }];
+}
+
 @end

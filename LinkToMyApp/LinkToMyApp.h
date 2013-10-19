@@ -21,4 +21,6 @@
 
 -(NSString *)installServerID;
 
+-(void)notifyServerForEvent:(NSString *)event withInfos:(NSDictionary *)metaInfos;
+
 @end
