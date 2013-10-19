@@ -16,7 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"%@",[LinkToMyApp linker]);
-    NSLog(@"%@",[LinkToMyApp startLinkerOnEndpoint:[NSURL URLWithString:@"http://linktomyapp.herokuapp.com/"] andAppID:@"1234"]);
+    NSLog(@"%@",[LinkToMyApp startLinkerOnEndpoint:[NSURL URLWithString:@"http://linktomyapp.herokuapp.com"] andAppID:@"3"]);
     NSLog(@"%@",[LinkToMyApp linker]);
     [[LinkToMyApp linker] notifyServerForEvent:@"app_launch" withInfos:nil];
     

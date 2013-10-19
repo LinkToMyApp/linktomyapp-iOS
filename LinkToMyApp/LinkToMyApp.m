@@ -61,19 +61,24 @@ static LinkToMyApp *_linker;
 -(void)notifyInstall
 {
     NSLog(@"_notifyInstall");
-    NSURL *installURL = [self.baseURL URLByAppendingPathComponent:@"/"];
+    NSURL *installURL = [self.baseURL URLByAppendingPathComponent:@"/api/app_links/app_installed"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:installURL];
     
     [request setHTTPMethod:@"POST"];
     
-//    [request setHTTPBody:<#(NSData *)#>]
+    [request setHTTPBody:[LinkToMyApp encodeDictionary:@{@"app_id": self.appID}]];
     
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:installURL]
+    
+    [NSURLConnection sendAsynchronousRequest:request
                                        queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                
-                               if (!connectionError)
+                               if (connectionError || [(NSHTTPURLResponse *)response statusCode] >= 400)
+                               {
+                                   return;
+                               }
+                               else
                                {
                                    [[NSUserDefaults standardUserDefaults] setValue:@"id1234" forKey:INSTAL_SERVER_ID];
                                    [[NSUserDefaults standardUserDefaults] synchronize];
@@ -85,7 +90,8 @@ static LinkToMyApp *_linker;
 
 -(BOOL)shouldNotifyInstall
 {
-    return ![self installServerID];
+//    return ![self installServerID];
+    return YES;
 }
 
 -(NSString *)installServerID
@@ -95,17 +101,22 @@ static LinkToMyApp *_linker;
 
 -(void)notifyServerForEvent:(NSString *)event withInfos:(NSDictionary *)metaInfos
 {
+    return;
+    
     NSLog(@"_notify event: %@ with infos: %@", event, metaInfos);
     
-    NSURL *installURL = [self.baseURL URLByAppendingPathComponent:@"/"];
+    NSURL *eventURL = [self.baseURL URLByAppendingPathComponent:@"/"];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:installURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:eventURL];
     
     [request setHTTPMethod:@"POST"];
     
-    //    [request setHTTPBody:<#(NSData *)#>]
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:metaInfos];
+    [dictionary setValue:self.appID forKey:@"app_id"];
     
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:installURL]
+    [request setHTTPBody:[LinkToMyApp encodeDictionary:dictionary]];
+    
+    [NSURLConnection sendAsynchronousRequest:request
                                        queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                
@@ -116,6 +127,20 @@ static LinkToMyApp *_linker;
                                
                                
                            }];
+}
+
+#pragma mark utils
++(NSData*)encodeDictionary:(NSDictionary*)dictionary
+{
+    NSMutableArray *parts = [[NSMutableArray alloc] init];
+    for (NSString *key in dictionary) {
+        NSString *encodedValue = [[dictionary objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *part = [NSString stringWithFormat: @"%@=%@", encodedKey, encodedValue];
+        [parts addObject:part];
+    }
+    NSString *encodedDictionary = [parts componentsJoinedByString:@"&"];
+    return [encodedDictionary dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end

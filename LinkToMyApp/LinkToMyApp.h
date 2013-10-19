@@ -23,4 +23,6 @@
 
 -(void)notifyServerForEvent:(NSString *)event withInfos:(NSDictionary *)metaInfos;
 
++(NSData*)encodeDictionary:(NSDictionary*)dictionary;
+
 @end
