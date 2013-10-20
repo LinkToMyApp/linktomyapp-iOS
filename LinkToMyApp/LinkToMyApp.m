@@ -63,7 +63,7 @@ static LinkToMyApp *_linker;
 -(void)notifyInstall
 {
     NSLog(@"_notifyInstall");
-    NSURL *installURL = [self.baseURL URLByAppendingPathComponent:@"/api/app_links/app_installed"];
+    NSURL *installURL = [self.baseURL URLByAppendingPathComponent:@"api/app_links/app_installed"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:installURL];
     
@@ -115,7 +115,7 @@ static LinkToMyApp *_linker;
     
     NSLog(@"_notify event: %@ with infos: %@", event, metaInfos);
     
-    NSURL *eventURL = [self.baseURL URLByAppendingPathComponent:@"/api/app_links/event"];
+    NSURL *eventURL = [self.baseURL URLByAppendingPathComponent:@"api/app_links/event"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:eventURL];
     
