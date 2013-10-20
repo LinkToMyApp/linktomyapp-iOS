@@ -12,6 +12,9 @@
 
 @interface MyViewController ()
 
+@property (strong, nonatomic) IBOutlet UITextField *loginField;
+@property (strong, nonatomic) IBOutlet UITextField *passField;
+
 @end
 
 @implementation MyViewController
@@ -19,17 +22,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.loginField.text = @"toto";
+    self.passField.text = @"qwerty";
 
 }
 
 -(IBAction)createAccountAction:(id)sender
 {
-    [[LinkToMyApp linker] notifyServerForEvent:@"create_account" withInfos:@{@"username" : @"John"}];
+//    NSString *params = [
+    
+    
+    [[LinkToMyApp linker] notifyServerForEvent:@"login" withInfos:@{@"username" : @"John"}];
 }
 
 -(IBAction)purchaseAction:(id)sender
 {
-    [[LinkToMyApp linker] notifyServerForEvent:@"purchase_inapp" withInfos:@{@"credits" : @500}];
+    [[LinkToMyApp linker] notifyServerForEvent:@"purchase_inapp" withInfos:@{@"credits" : @"500"}];
 }
 
 @end

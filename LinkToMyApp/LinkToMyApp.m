@@ -10,7 +10,7 @@
 
 #import <AdSupport/AdSupport.h>
 
-#define INSTAL_SERVER_ID @"install_server_id"
+#define LINK_CLICK_ID @"link_click_id"
 
 @implementation LinkToMyApp
 
@@ -69,7 +69,8 @@ static LinkToMyApp *_linker;
     
     [request setHTTPMethod:@"POST"];
     
-    NSDictionary *dataDictionary = @{@"app_id": self.appID, @"udid": [[ASIdentifierManager sharedManager] advertisingIdentifier]};
+    NSDictionary *dataDictionary = @{@"app_id": self.appID,
+                                     @"udid": [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]};
     
     [request setHTTPBody:[LinkToMyApp encodeDictionary:dataDictionary]];
     
@@ -84,7 +85,12 @@ static LinkToMyApp *_linker;
                                }
                                else
                                {
-                                   [[NSUserDefaults standardUserDefaults] setValue:@"id1234" forKey:INSTAL_SERVER_ID];
+                                   
+                                   id json = [NSJSONSerialization JSONObjectWithData:data
+                                                                             options:NSJSONReadingAllowFragments
+                                                                               error:nil];
+                                   
+                                   [[NSUserDefaults standardUserDefaults] setValue:[json valueForKey:@"link_click_id"] forKey:LINK_CLICK_ID];
                                    [[NSUserDefaults standardUserDefaults] synchronize];
                                }
                                
@@ -94,30 +100,32 @@ static LinkToMyApp *_linker;
 
 -(BOOL)shouldNotifyInstall
 {
-//    return ![self installServerID];
-    return YES;
+    return ![self installServerID];
 }
 
 -(NSString *)installServerID
 {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:INSTAL_SERVER_ID];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:LINK_CLICK_ID];
 }
 
 -(void)notifyServerForEvent:(NSString *)event withInfos:(NSDictionary *)metaInfos
 {
-    return;
+    if (![self installServerID])
+        return;
     
     NSLog(@"_notify event: %@ with infos: %@", event, metaInfos);
     
-    NSURL *eventURL = [self.baseURL URLByAppendingPathComponent:@"/"];
+    NSURL *eventURL = [self.baseURL URLByAppendingPathComponent:@"/api/app_links/event"];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:eventURL];
     
     [request setHTTPMethod:@"POST"];
     
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:metaInfos];
+    [dictionary setValue:[self installServerID] forKey:@"link_click_id"];
+    [dictionary setValue:event forKey:@"event"];
     [dictionary setValue:self.appID forKey:@"app_id"];
-    [dictionary setValue:[[ASIdentifierManager sharedManager] advertisingIdentifier] forKey:@"udid"];
+    [dictionary setValue:[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString] forKey:@"udid"];
     
     [request setHTTPBody:[LinkToMyApp encodeDictionary:dictionary]];
     
